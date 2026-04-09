@@ -1,0 +1,32 @@
+# Configuración unificada de dependencias y entorno virtual gestionada por Poetry.
+
+# Identidad y metadatos del proyecto: Define el nombre, la versión y la información del autor.
+[tool.poetry]
+name = "fin-notebook-agent"
+version = "0.1.0"
+description = "Agentic RAG assistant for banking documentation, inspired by NotebookLM"
+authors = ["David Llorente"]
+readme = "README.md"
+
+# Requisitos de ejecución (Producción): Especifica la versión de Python y las librerías esenciales
+[tool.poetry.dependencies]
+python = "^3.13"
+python-dotenv = "^1.2.2"
+pydantic-settings = "^2.13.1"
+langchain = "^1.2.15"
+langchain-community = "^0.4.1"
+pypdf = "^6.9.2"
+
+# Herramientas de entorno de trabajo (Desarrollo): Contiene las librerías para hacer pruebas (Pytest) y mantener el código limpio (Black, Ruff) sin afectar al producto final.
+langchain-core = "^1.2.28"
+langchain-openai = "^1.1.12"
+langchain-text-splitters = "^1.1.1"
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.3"
+black = "^26.3.1"
+ruff = "^0.15.10"
+
+# Motor de construcción interno: Indica los estándares técnicos que usa Poetry para instalar paquetes y empaquetar tu código correctamente.
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
