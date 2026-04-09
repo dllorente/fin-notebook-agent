@@ -5,6 +5,11 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [Unreleased]
+### Added
+- `app/index/vector_store.py`: Chroma vector store creation and retriever loading
+
 ## [0.1.0] - 2026-04-09
 ### Added
 - Project structure with Poetry and modular architecture (api, core, engine, index, models)
