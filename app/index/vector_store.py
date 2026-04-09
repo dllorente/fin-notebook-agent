@@ -1,7 +1,7 @@
-from webbrowser import get
 from langchain_chroma import Chroma
 from app.core.config import get_settings, get_embeddings
-
+from langchain_core.documents import Document
+from langchain_core.vectorstores import VectorStoreRetriever
 
 def create_vectorstore(docs: list[Document]) -> Chroma:
     

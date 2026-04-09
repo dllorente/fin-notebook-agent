@@ -9,6 +9,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [Unreleased]
 ### Added
 - `app/index/vector_store.py`: Chroma vector store creation and retriever loading
+### Fixed
+- Removed unused `webbrowser` import in `vector_store.py`
+- Added missing `Document` and `VectorStoreRetriever` imports
 
 ## [0.1.0] - 2026-04-09
 ### Added
