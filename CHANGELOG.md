@@ -5,16 +5,21 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2026-04-09
+### Added
+- `app/models/schemas.py`: Pydantic request/response schemas (AskRequest, AskResponse)
+- `app/api/routes.py`: FastAPI endpoints GET /health and POST /ask
+- `main.py`: FastAPI app entrypoint with router
 
-## [Unreleased]
+## [0.2.0] - 2026-04-09
 ### Added
 - `app/index/vector_store.py`: Chroma vector store creation and retriever loading
+- `app/engine/prompts.py`: RAG prompt template for banking documentation
+- `app/engine/agent.py`: RAG chain built with LCEL
+
 ### Fixed
 - Removed unused `webbrowser` import in `vector_store.py`
-- Added missing `Document` and `VectorStoreRetriever` imports
-### Added
-- `app/engine/prompts.py`: RAG prompt template for banking documentation
-- `app/engine/agent.py`: RAG chain built with LCEL (retriever + prompt + LLM + parser)
+- Added missing type hint imports in `vector_store.py`
 
 ## [0.1.0] - 2026-04-09
 ### Added
