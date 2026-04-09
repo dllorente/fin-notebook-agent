@@ -12,6 +12,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ### Fixed
 - Removed unused `webbrowser` import in `vector_store.py`
 - Added missing `Document` and `VectorStoreRetriever` imports
+### Added
+- `app/engine/prompts.py`: RAG prompt template for banking documentation
+- `app/engine/agent.py`: RAG chain built with LCEL (retriever + prompt + LLM + parser)
 
 ## [0.1.0] - 2026-04-09
 ### Added
