@@ -1,6 +1,5 @@
 # Importamos las librerías necesarias
-from core.config import get_settings
-from ast import List
+from app.core.config import get_settings
 from pathlib import Path
 from datetime import datetime
 from langchain_community.document_loaders import PyPDFLoader, TextLoader

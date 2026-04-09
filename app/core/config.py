@@ -1,10 +1,9 @@
 # Importamos las librerías necesarias
-from app.index.document_loader import settings
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field
 from functools import lru_cache
 from pydantic import Field, AliasChoices  
-
+from langchain_core.language_models import BaseChatModel
+from langchain_core.embeddings import Embeddings
 
 # Definimos la clase Settings que hereda de BaseSettings
 class Settings(BaseSettings):
