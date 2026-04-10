@@ -19,6 +19,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - `app/engine/graph/graph.py`: LangGraph with intent routing to qa, summarize and briefing nodes
 ### Changed 
 - `app/api/routes.py`: renamed chain to graph, API now uses LangGraph
+### Fixed
+- Fixed `RunnablePassthrough` invocation in nodes: pass string directly instead of dict
+- Added missing `RunnablePassthrough` and `StrOutputParser` imports in `agent.py`
+- Added `format_docs` helper to convert retrieved documents to plain text
+- Removed `intent` field from `AskRequest` schema
 
 ## [0.2.0] - 2026-04-09
 ### Added

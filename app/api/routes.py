@@ -2,7 +2,7 @@
 # Es lo primero que recibe la petición del usuario y lo último que le devuelve la respuesta.from fastapi import APIRouter
 from app.models.schemas import AskRequest, AskResponse
 from app.engine.graph.graph import build_graph    
-
+from fastapi import APIRouter
 router = APIRouter()
 
 @router.get("/health")
@@ -21,5 +21,6 @@ def ask(request: AskRequest):
         })
     return AskResponse(
         answer=result["answer"],  
-        session_id=request.session_id
+        session_id=request.session_id,
+        intent=result["intent"]
 )
