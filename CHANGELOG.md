@@ -6,6 +6,11 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - 2026-04-09
+## [0.3.0] - 2026-04-10
+### Added
+- LangSmith tracing activated via `load_dotenv()` in `main.py`
+- Added LangSmith variables to `.env.example`
+
 ### Added
 - `app/models/schemas.py`: Pydantic request/response schemas (AskRequest, AskResponse)
 - `app/api/routes.py`: FastAPI endpoints GET /health and POST /ask
