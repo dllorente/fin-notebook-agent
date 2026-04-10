@@ -10,6 +10,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - `app/models/schemas.py`: Pydantic request/response schemas (AskRequest, AskResponse)
 - `app/api/routes.py`: FastAPI endpoints GET /health and POST /ask
 - `main.py`: FastAPI app entrypoint with router
+- `app/engine/graph/`: LangGraph module scaffolding (state, nodes, router, graph)
+- `app/engine/graph/state.py`: AgentState TypedDict with question, intent, context, answer and session_id
 
 ## [0.2.0] - 2026-04-09
 ### Added
