@@ -12,6 +12,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - `main.py`: FastAPI app entrypoint with router
 - `app/engine/graph/`: LangGraph module scaffolding (state, nodes, router, graph)
 - `app/engine/graph/state.py`: AgentState TypedDict with question, intent, context, answer and session_id
+- `app/engine/graph/router.py`: keyword-based intent detection router
+
 
 ## [0.2.0] - 2026-04-09
 ### Added
