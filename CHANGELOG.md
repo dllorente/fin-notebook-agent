@@ -16,6 +16,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - `app/engine/graph/state.py`: AgentState TypedDict
 - `app/engine/graph/router.py`: keyword-based intent detection
 - `app/engine/graph/nodes.py`: qa, summarize and briefing nodes
+- `app/engine/graph/graph.py`: LangGraph with intent routing to qa, summarize and briefing nodes
+### Changed 
+- `app/api/routes.py`: renamed chain to graph, API now uses LangGraph
 
 ## [0.2.0] - 2026-04-09
 ### Added

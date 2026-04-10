@@ -1,7 +1,7 @@
-from fastapi import APIRouter
+#Es la puerta de entrada de tu aplicación. 
+# Es lo primero que recibe la petición del usuario y lo último que le devuelve la respuesta.from fastapi import APIRouter
 from app.models.schemas import AskRequest, AskResponse
-from app.engine.agent import build_rag_chain
-
+from app.engine.graph.graph import build_graph    
 
 router = APIRouter()
 
@@ -11,8 +11,15 @@ def health():
 
 @router.post("/ask", response_model=AskResponse)
 def ask(request: AskRequest):
-    chain = build_rag_chain()
+    graph = build_graph()
+    result = graph.invoke({
+            "question": request.question,
+            "session_id": request.session_id,
+            "intent": "",
+            "context": "",
+            "answer": ""
+        })
     return AskResponse(
-        answer = chain.invoke({"question": request.question}) ,  
+        answer=result["answer"],  
         session_id=request.session_id
 )
