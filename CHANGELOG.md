@@ -5,7 +5,18 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2026-04-09
+## [0.4.0] - 2026-04-12
+
+### Added
+- LangSmith tracing via `load_dotenv()` in `main.py`
+- `streamlit_app/main.py`: Streamlit chat UI with history and intent badge
+- `scripts/ingest.py`: local ingestion script
+
+### Fixed
+- Fixed chain invocation in nodes
+- Fixed missing imports in `agent.py`
+- Renamed Streamlit app to avoid module conflict
+
 ## [0.3.0] - 2026-04-10
 ### Added
 - LangSmith tracing activated via `load_dotenv()` in `main.py`
