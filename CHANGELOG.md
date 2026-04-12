@@ -5,16 +5,25 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-
 ## [Unreleased] - 2026-04-12
+### Added
+- LangSmith `@traceable` decorator in Streamlit `invoke_graph` function
+- `tests/eval_dataset.json`: 10 evaluation questions about professional profile
+- `scripts/evaluate.py`: automated evaluation script
+- `data/skills.txt`: skills knowledge base for better retrieval
+- Updated `scripts/ingest.py` to index all files in data/
+
+## [0.5.0] - 2026-04-12
 ### Added
 - Conversational memory with `add_messages` in `AgentState`
 - `MessagesPlaceholder` in RAG prompt for chat history
 - `RunnableLambda` in agent to extract question from dict
 - Current date injected in system prompt
+- Streamlit UI with chat interface, history and intent badge
 
 ### Fixed
 - Fixed dict/string type error in RAG chain invocation
+- Fixed module name conflict in Streamlit app
 
 ## [0.4.0] - 2026-04-12
 ### Added

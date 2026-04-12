@@ -22,5 +22,5 @@ def load_vectorstore() -> VectorStoreRetriever:
     
     return vectorstore.as_retriever(
         search_type="similarity",
-        search_kwargs={"k": 4}
+        search_kwargs={"k":6}
     )

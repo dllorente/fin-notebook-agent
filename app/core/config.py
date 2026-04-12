@@ -27,8 +27,8 @@ class Settings(BaseSettings):
     )
     data_dir: str = Field(default="data", validation_alias=AliasChoices("DATA_DIR"))
     vectorstore_dir: str = Field(default=".vectorstore", validation_alias=AliasChoices("VECTORSTORE_DIR"))
-    chunk_size: int = 1000
-    chunk_overlap: int = 200
+    chunk_size:  int = Field(default="openai", validation_alias=AliasChoices("CHUNK_SIZE"))
+    chunk_overlap: int = Field(default="openai", validation_alias=AliasChoices("CHUNK_OVERLAP"))
     langchain_tracing_v2: str = Field(default="false", validation_alias=AliasChoices("LANGCHAIN_TRACING_V2"))
     langchain_endpoint: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_ENDPOINT"))
     langchain_api_key: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_API_KEY"))
