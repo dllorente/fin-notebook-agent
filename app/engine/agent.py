@@ -1,8 +1,9 @@
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import Runnable, RunnableLambda
+
 from app.core.config import get_llm
 from app.engine.prompts import get_rag_prompt
 from app.index.vector_store import load_vectorstore
-from langchain_core.runnables import Runnable, RunnableLambda
-from langchain_core.output_parsers import StrOutputParser
 
 
 def format_docs(docs):
@@ -17,9 +18,7 @@ def build_rag_chain() -> Runnable:
 
     chain = (
         {
-            "context": RunnableLambda(lambda x: x["question"])
-            | retriever
-            | format_docs,
+            "context": RunnableLambda(lambda x: x["question"]) | retriever | format_docs,
             "question": lambda x: x["question"],
             "chat_history": lambda x: x.get("chat_history", []),
         }

@@ -1,4 +1,5 @@
 import os
+
 from app.index.document_loader import load_documents, split_documents
 from app.index.vector_store import create_vectorstore
 

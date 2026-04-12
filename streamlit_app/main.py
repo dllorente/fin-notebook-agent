@@ -1,8 +1,9 @@
 import streamlit as st
 from dotenv import load_dotenv
-from app.engine.graph.graph import build_graph
-from langchain_core.messages import HumanMessage, AIMessage
+from langchain_core.messages import AIMessage, HumanMessage
 from langsmith import traceable
+
+from app.engine.graph.graph import build_graph
 
 load_dotenv()
 
@@ -17,14 +18,10 @@ st.caption("Asistente de documentación bancaria con IA")
 
 with st.sidebar:
     st.subheader("⚙️ Configuración")
-    agent_mode = st.radio(
-        "Modo del agente:", ["Grafo estático", "Agente ReAct"], index=1
-    )
+    agent_mode = st.radio("Modo del agente:", ["Grafo estático", "Agente ReAct"], index=1)
 
 
-@traceable(
-    name="streamlit_ask", metadata={"version": "0.6.0", "interface": "streamlit"}
-)
+@traceable(name="streamlit_ask", metadata={"version": "0.6.0", "interface": "streamlit"})
 def invoke_graph(question: str, messages: list) -> dict:
     graph = build_graph()
     return graph.invoke(
@@ -65,11 +62,7 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
         agent = build_react_agent()
         result_raw = agent.invoke({"messages": [HumanMessage(content=prompt)]})
         # Extraer tools usadas
-        tools_used = [
-            msg.name
-            for msg in result_raw["messages"]
-            if hasattr(msg, "name") and msg.name is not None
-        ]
+        tools_used = [msg.name for msg in result_raw["messages"] if hasattr(msg, "name") and msg.name is not None]
         result = {
             "answer": result_raw["messages"][-1].content,
             "intent": "react",
@@ -79,11 +72,7 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
         result = invoke_graph(
             question=prompt,
             messages=[
-                (
-                    HumanMessage(content=m["content"])
-                    if m["role"] == "human"
-                    else AIMessage(content=m["content"])
-                )
+                (HumanMessage(content=m["content"]) if m["role"] == "human" else AIMessage(content=m["content"]))
                 for m in st.session_state.messages
             ],
         )
@@ -98,6 +87,4 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
 
     # Guardar en historial
     st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
-    st.session_state.metadata.append(
-        {"intent": result["intent"], "tools_used": result.get("tools_used", [])}
-    )
+    st.session_state.metadata.append({"intent": result["intent"], "tools_used": result.get("tools_used", [])})

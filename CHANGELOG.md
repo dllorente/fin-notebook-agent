@@ -10,6 +10,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - add `Dockerfile` `.dockerignore` Docker support for app containerization
 - add `.github/workflows/ci.yml`
 - add GitHub Actions CI pipeline
+- set line-length to 120 in ruff and black config
 
 ## [0.7.0] - 2026-04-12
 ### Added

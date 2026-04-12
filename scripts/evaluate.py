@@ -1,4 +1,5 @@
 import json
+
 from app.engine.graph.graph import build_graph
 
 

@@ -1,7 +1,8 @@
 from langchain_chroma import Chroma
-from app.core.config import get_settings, get_embeddings
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStoreRetriever
+
+from app.core.config import get_embeddings, get_settings
 
 
 def create_vectorstore(docs: list[Document]) -> Chroma:
@@ -17,8 +18,6 @@ def create_vectorstore(docs: list[Document]) -> Chroma:
 
 def load_vectorstore() -> VectorStoreRetriever:
     settings = get_settings()
-    vectorstore = Chroma(
-        persist_directory=settings.vectorstore_dir, embedding_function=get_embeddings()
-    )
+    vectorstore = Chroma(persist_directory=settings.vectorstore_dir, embedding_function=get_embeddings())
 
     return vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 6})

@@ -1,12 +1,14 @@
 # Es la puerta de entrada de tu aplicación.
-# Es lo primero que recibe la petición del usuario y lo último que le devuelve la respuesta.
+# Es lo primero que recibe la petición del usuario
+# y lo último que le devuelve la respuesta.
 
-from app.models.schemas import AskRequest, AskResponse
-from langchain_core.messages import HumanMessage
-from app.engine.react_agent import build_react_agent
-from app.engine.graph.graph import build_graph
 from fastapi import APIRouter
+from langchain_core.messages import HumanMessage
 from langsmith import traceable
+
+from app.engine.graph.graph import build_graph
+from app.engine.react_agent import build_react_agent
+from app.models.schemas import AskRequest, AskResponse
 
 router = APIRouter()
 
@@ -30,9 +32,7 @@ def ask(request: AskRequest):
             "messages": [],
         }
     )
-    return AskResponse(
-        answer=result["answer"], session_id=request.session_id, intent=result["intent"]
-    )
+    return AskResponse(answer=result["answer"], session_id=request.session_id, intent=result["intent"])
 
 
 @router.post("/agent/ask", response_model=AskResponse)

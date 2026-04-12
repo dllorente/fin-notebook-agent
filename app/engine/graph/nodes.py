@@ -1,13 +1,12 @@
-# Aquí defines los skills del agente. Cada nodo recibe el estado, hace su trabajo y devuelve el estado actualizado con answer relleno.
+# Aquí defines los skills del agente. Cada nodo recibe el estado,
+# hace su trabajo y devuelve el estado actualizado con answer relleno.
 from app.engine.agent import build_rag_chain
 from app.engine.graph.state import AgentState
 
 
 def qa_node(state: AgentState) -> AgentState:
     chain = build_rag_chain()
-    answer = chain.invoke(
-        {"question": state["question"], "chat_history": state.get("messages", [])}
-    )
+    answer = chain.invoke({"question": state["question"], "chat_history": state.get("messages", [])})
     return {**state, "answer": answer}
 
 

@@ -1,9 +1,10 @@
 # Objetivo: armar el grafo completo conectando router y nodos.
 
-from langgraph.graph import StateGraph, END
-from app.engine.graph.state import AgentState
-from app.engine.graph.nodes import qa_node, summarize_node, briefing_node
+from langgraph.graph import END, StateGraph
+
+from app.engine.graph.nodes import briefing_node, qa_node, summarize_node
 from app.engine.graph.router import detect_intent
+from app.engine.graph.state import AgentState
 
 
 def build_graph():
