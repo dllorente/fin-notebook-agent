@@ -5,8 +5,18 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.0] - 2026-04-12
 
+## [Unreleased] - 2026-04-12
+### Added
+- Conversational memory with `add_messages` in `AgentState`
+- `MessagesPlaceholder` in RAG prompt for chat history
+- `RunnableLambda` in agent to extract question from dict
+- Current date injected in system prompt
+
+### Fixed
+- Fixed dict/string type error in RAG chain invocation
+
+## [0.4.0] - 2026-04-12
 ### Added
 - LangSmith tracing via `load_dotenv()` in `main.py`
 - `streamlit_app/main.py`: Streamlit chat UI with history and intent badge
