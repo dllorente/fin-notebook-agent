@@ -1,9 +1,10 @@
-#Objetivo: armar el grafo completo conectando router y nodos.
+# Objetivo: armar el grafo completo conectando router y nodos.
 
 from langgraph.graph import StateGraph, END
 from app.engine.graph.state import AgentState
 from app.engine.graph.nodes import qa_node, summarize_node, briefing_node
 from app.engine.graph.router import detect_intent
+
 
 def build_graph():
     graph = StateGraph(AgentState)
@@ -21,11 +22,7 @@ def build_graph():
     graph.add_conditional_edges(
         "detect_intent",
         lambda state: state["intent"],  # lee la intención del estado
-        {
-            "qa": "qa",
-            "summarize": "summarize",
-            "briefing": "briefing"
-        }
+        {"qa": "qa", "summarize": "summarize", "briefing": "briefing"},
     )
 
     # Conectar nodos finales a END

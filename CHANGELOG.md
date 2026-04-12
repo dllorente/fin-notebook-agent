@@ -6,6 +6,11 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - 2026-04-12
+Keyword-based scoring metric in `scripts/evaluate.py`
+- Baseline score: 0.33
+- Codebase verified with ruff and black - no changes needed
+
+## [0.6.0] - 2026-04-12
 ### Added
 - LangSmith `@traceable` decorator in Streamlit `invoke_graph` function
 - `tests/eval_dataset.json`: 10 evaluation questions about professional profile
