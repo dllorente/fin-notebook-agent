@@ -6,6 +6,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - 2026-04-12
+## [0.8.0] - 2026-04-12
 ### Added
 - add `Dockerfile` `.dockerignore` Docker support for app containerization
 - add `.github/workflows/ci.yml`
