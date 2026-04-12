@@ -2,8 +2,9 @@ from pydantic import BaseModel
 
 
 class AskRequest(BaseModel):
-    question: str      
+    question: str
     session_id: str = "default"
+
 
 class AskResponse(BaseModel):
     answer: str
