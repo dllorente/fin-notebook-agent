@@ -82,20 +82,25 @@ PYTHONPATH=. poetry run python scripts/evaluate.py
 
 
 ## 📁 Estructura
+
+```bash
 fin-notebook-agent/
 ├── app/
-│ ├── api/ # FastAPI routes
-│ ├── core/ # Config, LLM, embeddings
-│ ├── engine/ # RAG chain, prompts, tools, ReAct agent
-│ │ └── graph/ # LangGraph state, router, nodes, graph
-│ ├── index/ # Vector store, document loader
-│ └── models/ # Pydantic schemas
-├── streamlit_app/ # Streamlit UI
-├── scripts/ # ingest.py, evaluate.py
-├── tests/ # Pytest tests
-├── data/ # Documentos bancarios indexados
+│   ├── api/              # FastAPI routes
+│   ├── core/             # Config, LLM, embeddings
+│   ├── engine/           # RAG chain, prompts, tools, ReAct agent
+│   │   └── graph/        # LangGraph state, router, nodes, graph
+│   ├── index/            # Vector store, document loader
+│   └── models/           # Pydantic schemas
+├── streamlit_app/        # Streamlit UI
+├── scripts/              # ingest.py, evaluate.py
+├── tests/                # Pytest tests
+├── data/                 # Documentos bancarios indexados
 ├── Dockerfile
-└── .github/workflows/ci.yml
+└── .github/
+    └── workflows/
+        └── ci.yml
+```
 
 ## 🔑 Variables de entorno
 
