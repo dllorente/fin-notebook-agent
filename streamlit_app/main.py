@@ -1,6 +1,7 @@
 import streamlit as st
 from dotenv import load_dotenv
 from app.engine.graph.graph import build_graph
+from langchain_core.messages import HumanMessage, AIMessage
 
 load_dotenv()
 
@@ -36,9 +37,15 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
     graph = build_graph()
     result = graph.invoke({
         "question": prompt,
+        "intent": "",
         "session_id": "default",
         "context": "",
-        "answer": ""
+        "answer": "",
+        "messages": [
+            HumanMessage(content=m["content"]) if m["role"] == "human"
+            else AIMessage(content=m["content"])
+            for m in st.session_state.messages
+        ]
     })
 
     # Mostrar respuesta
