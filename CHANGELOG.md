@@ -6,9 +6,19 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - 2026-04-12
-Keyword-based scoring metric in `scripts/evaluate.py`
-- Baseline score: 0.33
-- Codebase verified with ruff and black - no changes needed
+## [0.7.0] - 2026-04-12
+### Added
+- `app/engine/tools.py`: search_documents, summarize_documents, generate_briefing tools
+- `app/engine/react_agent.py`: ReAct agent with create_react_agent and DuckDuckGo
+- `app/api/routes.py`: new POST /agent/ask endpoint
+- Streamlit mode selector: Grafo estático vs Agente ReAct
+- Tools and intent history persisted in session_state
+- Keyword scoring metric in evaluate.py
+- Baseline evaluation score: 0.33
+
+### Changed
+- `scripts/ingest.py`: indexes all files in data/
+- `scripts/evaluate.py`: added scoring metric
 
 ## [0.6.0] - 2026-04-12
 ### Added

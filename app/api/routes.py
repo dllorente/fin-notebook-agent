@@ -2,6 +2,8 @@
 # Es lo primero que recibe la petición del usuario y lo último que le devuelve la respuesta.
 
 from app.models.schemas import AskRequest, AskResponse
+from langchain_core.messages import HumanMessage
+from app.engine.react_agent import build_react_agent
 from app.engine.graph.graph import build_graph
 from fastapi import APIRouter
 from langsmith import traceable
@@ -31,3 +33,12 @@ def ask(request: AskRequest):
     return AskResponse(
         answer=result["answer"], session_id=request.session_id, intent=result["intent"]
     )
+
+
+@router.post("/agent/ask", response_model=AskResponse)
+@traceable(name="react_agent_endpoint", metadata={"version": "0.6.0"})
+def agent_ask(request: AskRequest):
+    agent = build_react_agent()
+    result = agent.invoke({"messages": [HumanMessage(content=request.question)]})
+    answer = result["messages"][-1].content
+    return AskResponse(answer=answer, session_id=request.session_id, intent="react")
