@@ -62,7 +62,7 @@ cp .env.example .env  # añade tus API keys
 
 **Indexar documentos:**
 ```bash
-PYTHONPATH=. poetry run python scripts/ingest.py
+poetry run python scripts/ingest.py
 ```
 
 **Arrancar API:**
@@ -77,7 +77,7 @@ poetry run streamlit run streamlit_app/main.py
 
 **Ejecutar evaluación:**
 ```bash
-PYTHONPATH=. poetry run python scripts/evaluate.py
+poetry run python scripts/evaluate.py
 ```
 
 
