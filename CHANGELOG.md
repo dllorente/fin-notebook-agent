@@ -22,6 +22,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - `app/engine/graph/router.py`: keyword-based intent detection
 - `app/engine/graph/nodes.py`: qa, summarize and briefing nodes
 - `app/engine/graph/graph.py`: LangGraph with intent routing to qa, summarize and briefing nodes
+- `streamlit_app/`: Streamlit UI module scaffolding
 ### Changed 
 - `app/api/routes.py`: renamed chain to graph, API now uses LangGraph
 ### Fixed

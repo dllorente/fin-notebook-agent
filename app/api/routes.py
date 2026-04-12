@@ -15,7 +15,6 @@ def ask(request: AskRequest):
     result = graph.invoke({
             "question": request.question,
             "session_id": request.session_id,
-            "intent": "",
             "context": "",
             "answer": ""
         })
