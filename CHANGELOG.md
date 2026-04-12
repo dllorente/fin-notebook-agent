@@ -12,7 +12,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - add GitHub Actions CI pipeline
 - set line-length to 120 in ruff and black config
 - add initial smoke test
-
+- chore: fix chromadb/protobuf/opentelemetry dependency conflicts
 
 ## [0.7.0] - 2026-04-12
 ### Added
