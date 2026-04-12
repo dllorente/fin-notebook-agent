@@ -1,0 +1,13 @@
+.env
+.venv
+__pycache__
+*.pyc
+.git
+.gitignore
+data/
+.vectorstore/
+*.chroma
+notebooks/
+tests/
+.pytest_cache/
+.ruff_cache/
