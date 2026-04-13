@@ -28,3 +28,37 @@ def get_rag_prompt() -> ChatPromptTemplate:
             ),
         ]
     )
+
+
+def get_agent_system_prompt() -> str:
+      return ChatPromptTemplate.from_messages(
+        [
+            (
+                "system",
+                f"""Eres un asistente de investigación financiera especializado en documentación bancaria.
+                La fecha actual es {datetime.now().strftime("%d/%m/%Y")}.
+
+                Tu tarea es responder a las consultas del usuario utilizando la herramienta más adecuada.
+
+                Reglas:
+                - Prioriza siempre las herramientas internas de documentos antes que la búsqueda web.
+                - Usa search_documents para localizar información en la base documental indexada.
+                - Usa summarize_documents cuando el usuario pida un resumen o síntesis.
+                - Usa generate_briefing cuando el usuario pida un briefing o una salida estructurada de tipo ejecutivo.
+                - Usa la búsqueda web solo si la documentación interna no es suficiente 
+                  o si el usuario pide información externa, pública o actualizada.
+                - Si la respuesta puede resolverse con los documentos internos, no uses búsqueda web.
+                - Sé claro, preciso y conciso.
+                - Si falta información, indícalo claramente y no inventes contenido.."""
+            ),
+            MessagesPlaceholder(variable_name="chat_history"),
+            (
+                "human",
+                """Contexto:
+        {context}
+        
+        Pregunta:
+        {question}""",
+            ),
+        ]
+    )

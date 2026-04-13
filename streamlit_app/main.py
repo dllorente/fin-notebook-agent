@@ -18,7 +18,7 @@ st.caption("Asistente de documentación bancaria con IA")
 
 with st.sidebar:
     st.subheader("⚙️ Configuración")
-    agent_mode = st.radio("Modo del agente:", ["Grafo estático", "Agente ReAct"], index=1)
+    agent_mode = st.radio("Modo del agente:", ["Grafo estático", "Agente ReAct","Dynamic agent"], index=1)
 
 
 @traceable(name="streamlit_ask", metadata={"version": "0.6.0", "interface": "streamlit"})
@@ -60,6 +60,18 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
         from app.engine.react_agent import build_react_agent
 
         agent = build_react_agent()
+        result_raw = agent.invoke({"messages": [HumanMessage(content=prompt)]})
+        # Extraer tools usadas
+        tools_used = [msg.name for msg in result_raw["messages"] if hasattr(msg, "name") and msg.name is not None]
+        result = {
+            "answer": result_raw["messages"][-1].content,
+            "intent": "react",
+            "tools_used": tools_used,
+        }
+    elif agent_mode == "Dynamic agent":
+        from app.engine.dynamic_agent import build_dynamic_agent
+
+        agent = build_dynamic_agent()
         result_raw = agent.invoke({"messages": [HumanMessage(content=prompt)]})
         # Extraer tools usadas
         tools_used = [msg.name for msg in result_raw["messages"] if hasattr(msg, "name") and msg.name is not None]
