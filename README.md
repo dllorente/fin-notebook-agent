@@ -115,10 +115,28 @@ LANGCHAIN_TRACING_V2=true
 LANGCHAIN_PROJECT=fin-notebook-agent
 ```
 
+## VectorStore
+
+Borra el vectorstore
+```bash
+rm -rf .vectorstore
+```
+Reindexado de documentos
+```bash
+poetry run python scripts/ingest.py
+```
+
 ## 🧪 Tests
 
 ```bash
 poetry run pytest
+```
+
+## 🔍 Linting & Formatting
+
+```bash
+poetry run ruff check --fix
+poetry run black --check .
 ```
 
 ## 📄 Licencia
