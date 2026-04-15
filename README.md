@@ -75,10 +75,11 @@ poetry run uvicorn main:app --reload
 poetry run streamlit run streamlit_app/main.py
 ```
 
-**Ejecutar evaluación:**
+**Ejecutar evaluación de agentes:**
 ```bash
 poetry run python scripts/evaluate.py
 ```
+
 
 
 ## 📁 Estructura
@@ -126,7 +127,7 @@ Reindexado de documentos
 poetry run python scripts/ingest.py
 ```
 
-## 🧪 Tests
+## 🧪 Tests unitarios
 
 ```bash
 poetry run pytest

@@ -1,3 +1,5 @@
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
+
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.messages import HumanMessage
 from langgraph.prebuilt import create_react_agent
@@ -14,9 +16,6 @@ def build_react_agent():
     agent = create_react_agent(llm, tools)
     return agent
 
-
-import threading
-from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 def run_react_with_timeout(agent, messages, timeout_sec=30):
     def invoke_agent():

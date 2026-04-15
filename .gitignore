@@ -1,5 +1,8 @@
 # Project specific
 data/
+output/
+!output/.gitkeep
+
 *.chroma
 
 

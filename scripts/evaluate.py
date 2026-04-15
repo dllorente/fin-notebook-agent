@@ -1,8 +1,10 @@
-import json,time
-from pathlib import Path
-from app.engine.runner import run_engine
 import csv
+import json
+import time
 from datetime import datetime
+from pathlib import Path
+
+from app.engine.runner import run_engine
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 json_path = f"output/eval_results_sprint12_{timestamp}.json"
@@ -23,10 +25,10 @@ def evaluate():
 
     Path("output").mkdir(exist_ok=True)
 
-    with open("output/eval_results_sprint12.json", "w", encoding="utf-8") as f:
+    with open(json_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
 
-    with open("output/eval_results_sprint12.csv", "w", newline="", encoding="utf-8") as f:
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(
             f,
             fieldnames=[
@@ -50,8 +52,8 @@ def evaluate():
                 }
             )
 
-    print("\n💾 Resultados guardados en {json_path}")
-    print("💾 Resultados guardados en {csv_path}")
+    print(f"\n💾 Resultados guardados en {json_path}")
+    print(f"💾 Resultados guardados en {csv_path}")
     return results
 
 def evaluate_modes(dataset, n_questions=4):  # limitamos a 5 para ir rápido
