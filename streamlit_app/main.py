@@ -69,15 +69,24 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
             "tools_used": tools_used,
         }
     elif agent_mode == "Dynamic agent":
-        from app.engine.dynamic_agent import build_dynamic_agent
+        from app.engine.dynamic_agent import run_dynamic_agent
 
-        agent = build_dynamic_agent()
-        result_raw = agent.invoke({"messages": [HumanMessage(content=prompt)]})
-        # Extraer tools usadas
-        tools_used = [msg.name for msg in result_raw["messages"] if hasattr(msg, "name") and msg.name is not None]
+        chat_history = [
+            HumanMessage(content=m["content"]) if m["role"] == "human"
+            else AIMessage(content=m["content"])
+            for m in st.session_state.messages[:-1]
+        ]
+
+        result_raw = run_dynamic_agent(prompt, chat_history=chat_history)
+
+        tools_used = [
+            msg.name for msg in result_raw["messages"]
+            if hasattr(msg, "name") and msg.name is not None
+        ]
+
         result = {
             "answer": result_raw["messages"][-1].content,
-            "intent": "react",
+            "intent": "dynamic",
             "tools_used": tools_used,
         }
     else:
@@ -88,15 +97,13 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
                 for m in st.session_state.messages
             ],
         )
-
+    
     with st.chat_message("assistant"):
         st.markdown(result["answer"])
         st.badge(f"Intención: {result['intent']}", icon="🎯")
-        # Mostrar tools usadas si es ReAct
-        if agent_mode == "Agente ReAct" and "tools_used" in result:
+        if agent_mode in ["Agente ReAct", "Dynamic agent"] and "tools_used" in result:
             st.caption(f"🔧 Tools usadas: {', '.join(result['tools_used'])}")
-    st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
-
+    
     # Guardar en historial
     st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
     st.session_state.metadata.append({"intent": result["intent"], "tools_used": result.get("tools_used", [])})

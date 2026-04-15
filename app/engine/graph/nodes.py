@@ -10,6 +10,7 @@ def qa_node(state: AgentState) -> AgentState:
     return {**state, "answer": answer}
 
 
+
 def summarize_node(state: AgentState) -> AgentState:
     chain = build_rag_chain()
     answer = chain.invoke(
