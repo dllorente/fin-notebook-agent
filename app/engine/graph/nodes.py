@@ -2,6 +2,7 @@
 # hace su trabajo y devuelve el estado actualizado con answer relleno.
 from app.engine.agent import build_rag_chain
 from app.engine.graph.state import AgentState
+from app.engine.dynamic_agent import run_dynamic_agent
 
 
 def qa_node(state: AgentState) -> AgentState:
