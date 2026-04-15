@@ -28,7 +28,7 @@ def ask(request: AskRequest):
             "context": "",
             "answer": "",
             "messages": [],
-            "engine_mode": "rag"
+            "engine_mode": "rag",
         }
     )
     return AskResponse(answer=result["answer"], session_id=request.session_id, intent=result["intent"])
@@ -54,6 +54,7 @@ def agent_react_ask(request: AskRequest):
         session_id=request.session_id,
         intent=result["intent"],
     )
+
 
 @router.post("/agent/dynamicAsk", response_model=AskResponse)
 @traceable(name="dynamic_agent_endpoint", metadata={"version": "0.6.0"})

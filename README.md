@@ -9,6 +9,13 @@
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
 ## ¿Qué es esto?
+Agentic Knowledge Platform para Documentación Bancaria
+Inspirado en NotebookLM, evolucionado con RAG multi-fuente, agente dinámico, evaluación reproducible y arquitectura de producto.
+
+Definición del proyecto
+Una plataforma GenAI capaz de consultar, resumir, hacer briefings y combinar múltiples fuentes de conocimiento bancario 
+—documentos, FAQs, S3 y web fallback— mediante un agente dinámico con herramientas especializadas, 
+trazabilidad, evaluación y una experiencia de producto usable.
 
 Asistente conversacional agnostico especializado en documentación bancaria.
 Permite consultar, resumir y analizar documentos financieros mediante un

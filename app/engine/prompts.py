@@ -30,8 +30,6 @@ def get_rag_prompt() -> ChatPromptTemplate:
     )
 
 
-
-
 def get_agent_system_prompt() -> str:
     return f"""
             Eres un asistente de investigación financiera especializado en documentación bancaria.

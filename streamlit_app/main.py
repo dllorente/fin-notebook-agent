@@ -30,6 +30,7 @@ MODE_MAP = {
     "Dynamic agent": "dynamic",
 }
 
+
 @traceable(name="streamlit_ask", metadata={"version": "0.7.0", "interface": "streamlit"})
 def invoke_graph(question: str, messages: list, engine_mode: str) -> dict:
     graph = build_graph()
@@ -45,6 +46,7 @@ def invoke_graph(question: str, messages: list, engine_mode: str) -> dict:
         }
     )
 
+
 def extract_tools_used(messages) -> list[str]:
     tools_used = []
 
@@ -54,12 +56,14 @@ def extract_tools_used(messages) -> list[str]:
 
     return list(dict.fromkeys(tools_used))
 
+
 def normalize_result(answer: str, intent: str, tools_used: list[str]) -> dict:
     return {
         "answer": answer,
         "intent": intent,
         "tools_used": tools_used,
     }
+
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -86,8 +90,7 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
     st.session_state.messages.append({"role": "human", "content": prompt})
 
     chat_history = [
-        HumanMessage(content=m["content"]) if m["role"] == "human"
-        else AIMessage(content=m["content"])
+        HumanMessage(content=m["content"]) if m["role"] == "human" else AIMessage(content=m["content"])
         for m in st.session_state.messages[:-1]
     ]
 
@@ -109,9 +112,7 @@ if prompt := st.chat_input("Escribe tu pregunta..."):
         if tools_used:
             st.caption(f"🔧 Tools usadas: {', '.join(tools_used)}")
 
-    st.session_state.messages.append(
-        {"role": "assistant", "content": result["answer"]}
-    )
+    st.session_state.messages.append({"role": "assistant", "content": result["answer"]})
 
     st.session_state.metadata.append(
         {
