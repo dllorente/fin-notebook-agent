@@ -6,7 +6,14 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - 2026-04-15
-## [0.9.0] - 2026-04-15
+## [0.11.0] - 2026-04-15
+### Added
+- grounded evaluation dataset for benchmarking banking-related queries
+- comparative evaluation script for rag, react and dynamic execution modes
+- JSON and CSV export for evaluation runs
+- traceability fields including intent, tools_used and latency
+ evaluation workflow now supports grounded-only datasets to avoid misleading comparisons on out-of-corpus technical questions
+## [0.10.0] - 2026-04-15
 ### Fixed
 - `package-mode = false` removed from pyproject.toml
 -complete Sprint 11 - engine_mode runner with rag/react/dynamic coexistence

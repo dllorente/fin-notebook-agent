@@ -1,0 +1,18 @@
+[
+    {
+      "question": "Tienes más de 20 años en banca, ¿cómo describes tu transición hacia la IA generativa y qué te motivó a dar ese salto?",
+      "expected": "Debe mencionar su trayectoria en análisis funcional y sistemas bancarios críticos, y explicar la decisión estratégica hacia LLMs, RAG y agentes. Se valora que cite el proyecto GenAI en BBVA como punto de inflexión."
+    },
+    {
+      "question": "¿Qué rol desempeñaste como Tech Lead en el proyecto de IA Generativa en BBVA y cuáles fueron tus principales responsabilidades?",
+      "expected": "Debe describir la implementación inicial de soluciones basadas en LLMs, su rol de liderazgo técnico, y mencionar la decisión posterior de profundizar en arquitecturas agénticas para proyectos de mayor escala."
+    },
+    {
+      "question": "Explica qué es RAG (Retrieval-Augmented Generation) y cómo lo has aplicado en proyectos reales.",
+      "expected": "Debe definir RAG como técnica que combina recuperación de documentos con generación de texto mediante LLMs, y relacionarlo con su experiencia en el proyecto GenAI bancario de BBVA."
+    },
+    {
+      "question": "Durante tu etapa en Sopra Steria (2022–2025) gestionaste el gobierno de APIs en BBVA. ¿Qué implica el API Governance y qué metodologías aplicaste?",
+      "expected": "Debe hablar de revisión y validación de componentes, estandarización técnica, gestión del ciclo de vida de APIs, catálogo de componentes globales para canal móvil y entornos multipaís."
+    }
+  ]

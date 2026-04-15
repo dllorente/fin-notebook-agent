@@ -8,24 +8,47 @@ from app.engine.tools import generate_briefing, search_documents, summarize_docu
 
 def build_react_agent():
     llm = get_llm()
-    # Tools propias
     own_tools = [search_documents, summarize_documents, generate_briefing]
-    # Tools de comunidad
     web_search = DuckDuckGoSearchRun()
     tools = own_tools + [web_search]
     agent = create_react_agent(llm, tools)
     return agent
 
-def run_react_agent(question: str, chat_history=None) -> str:
+
+import threading
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
+
+def run_react_with_timeout(agent, messages, timeout_sec=30):
+    def invoke_agent():
+        return agent.invoke({"messages": messages})
+    
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        future = executor.submit(invoke_agent)
+        try:
+            return future.result(timeout=timeout_sec)
+        except TimeoutError:
+            return None
+
+def run_react_agent(question: str, chat_history=None, timeout_sec=30) -> dict:
     agent = build_react_agent()
-
-    # Historial en formato lista
     messages = list(chat_history) if chat_history else []
-    # Añadimos la nueva pregunta del usuario
     messages.append(HumanMessage(content=question))
-
-    # Ejecutamos el agente ReAct
-    result = agent.invoke({"messages": messages})
-
-    # Devolvemos solo el texto del último mensaje del asistente
-    return result["messages"][-1].content
+    
+    result = run_react_with_timeout(agent, messages, timeout_sec)
+    
+    if result is None:
+        return {
+            "answer": "⏰ Agent ReAct timeout (loop detectado)",
+            "tools_used": ["timeout"],
+        }
+    
+    tools_used = []
+    for msg in result["messages"]:
+        if hasattr(msg, "name") and msg.name:
+            tools_used.append(msg.name)
+    tools_used = list(dict.fromkeys(tools_used))
+    
+    return {
+        "answer": result["messages"][-1].content,
+        "tools_used": tools_used,
+    }

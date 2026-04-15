@@ -1,0 +1,142 @@
+[
+  {
+    "question": "Tienes más de 20 años en banca, ¿cómo describes tu transición hacia la IA generativa y qué te motivó a dar ese salto?",
+    "expected": "Debe mencionar su trayectoria en análisis funcional y sistemas bancarios críticos, y explicar la decisión estratégica hacia LLMs, RAG y agentes. Se valora que cite el proyecto GenAI en BBVA como punto de inflexión.",
+    "mode": "rag",
+    "answer": "De momento no dispongo de información suficiente en los documentos proporcionados para responder est",
+    "intent": "rag",
+    "tools_used": [
+      "search_documents",
+      "generate_answer"
+    ],
+    "score": 0.06,
+    "latency": 3.66
+  },
+  {
+    "question": "Tienes más de 20 años en banca, ¿cómo describes tu transición hacia la IA generativa y qué te motivó a dar ese salto?",
+    "expected": "Debe mencionar su trayectoria en análisis funcional y sistemas bancarios críticos, y explicar la decisión estratégica hacia LLMs, RAG y agentes. Se valora que cite el proyecto GenAI en BBVA como punto de inflexión.",
+    "mode": "react",
+    "answer": "Mi transición hacia la IA generativa fue un proceso gradual motivado por varias razones. Después de ",
+    "intent": "react",
+    "tools_used": [],
+    "score": 0.32,
+    "latency": 7.56
+  },
+  {
+    "question": "Tienes más de 20 años en banca, ¿cómo describes tu transición hacia la IA generativa y qué te motivó a dar ese salto?",
+    "expected": "Debe mencionar su trayectoria en análisis funcional y sistemas bancarios críticos, y explicar la decisión estratégica hacia LLMs, RAG y agentes. Se valora que cite el proyecto GenAI en BBVA como punto de inflexión.",
+    "mode": "dynamic",
+    "answer": "No tengo experiencia personal ni una trayectoria profesional, ya que soy un asistente de inteligenci",
+    "intent": "dynamic",
+    "tools_used": [],
+    "score": 0.35,
+    "latency": 5.94
+  },
+  {
+    "question": "¿Qué rol desempeñaste como Tech Lead en el proyecto de IA Generativa en BBVA y cuáles fueron tus principales responsabilidades?",
+    "expected": "Debe describir la implementación inicial de soluciones basadas en LLMs, su rol de liderazgo técnico, y mencionar la decisión posterior de profundizar en arquitecturas agénticas para proyectos de mayor escala.",
+    "mode": "rag",
+    "answer": "Como Tech Lead en el proyecto de IA Generativa en BBVA, desempeñaste un papel crucial en la implemen",
+    "intent": "rag",
+    "tools_used": [
+      "search_documents",
+      "generate_answer"
+    ],
+    "score": 0.56,
+    "latency": 3.37
+  },
+  {
+    "question": "¿Qué rol desempeñaste como Tech Lead en el proyecto de IA Generativa en BBVA y cuáles fueron tus principales responsabilidades?",
+    "expected": "Debe describir la implementación inicial de soluciones basadas en LLMs, su rol de liderazgo técnico, y mencionar la decisión posterior de profundizar en arquitecturas agénticas para proyectos de mayor escala.",
+    "mode": "react",
+    "answer": "Como Tech Lead en el proyecto de IA Generativa en BBVA, desempeñaste un papel crucial en la gestión ",
+    "intent": "react",
+    "tools_used": [
+      "search_documents"
+    ],
+    "score": 0.64,
+    "latency": 6.9
+  },
+  {
+    "question": "¿Qué rol desempeñaste como Tech Lead en el proyecto de IA Generativa en BBVA y cuáles fueron tus principales responsabilidades?",
+    "expected": "Debe describir la implementación inicial de soluciones basadas en LLMs, su rol de liderazgo técnico, y mencionar la decisión posterior de profundizar en arquitecturas agénticas para proyectos de mayor escala.",
+    "mode": "dynamic",
+    "answer": "No tengo información específica sobre el rol desempeñado como Tech Lead en el proyecto de IA Generat",
+    "intent": "dynamic",
+    "tools_used": [],
+    "score": 0.32,
+    "latency": 4.52
+  },
+  {
+    "question": "Explica qué es RAG (Retrieval-Augmented Generation) y cómo lo has aplicado en proyectos reales.",
+    "expected": "Debe definir RAG como técnica que combina recuperación de documentos con generación de texto mediante LLMs, y relacionarlo con su experiencia en el proyecto GenAI bancario de BBVA.",
+    "mode": "rag",
+    "answer": "De momento no dispongo de información suficiente en los documentos proporcionados para responder est",
+    "intent": "rag",
+    "tools_used": [
+      "search_documents",
+      "generate_answer"
+    ],
+    "score": 0.12,
+    "latency": 0.86
+  },
+  {
+    "question": "Explica qué es RAG (Retrieval-Augmented Generation) y cómo lo has aplicado en proyectos reales.",
+    "expected": "Debe definir RAG como técnica que combina recuperación de documentos con generación de texto mediante LLMs, y relacionarlo con su experiencia en el proyecto GenAI bancario de BBVA.",
+    "mode": "react",
+    "answer": "**Retrieval-Augmented Generation (RAG)** es un enfoque que combina modelos de lenguaje con la búsque",
+    "intent": "react",
+    "tools_used": [
+      "search_documents",
+      "duckduckgo_search"
+    ],
+    "score": 0.44,
+    "latency": 9.85
+  },
+  {
+    "question": "Explica qué es RAG (Retrieval-Augmented Generation) y cómo lo has aplicado en proyectos reales.",
+    "expected": "Debe definir RAG como técnica que combina recuperación de documentos con generación de texto mediante LLMs, y relacionarlo con su experiencia en el proyecto GenAI bancario de BBVA.",
+    "mode": "dynamic",
+    "answer": "RAG, o Retrieval-Augmented Generation, es un enfoque en el campo del procesamiento del lenguaje natu",
+    "intent": "dynamic",
+    "tools_used": [],
+    "score": 0.6,
+    "latency": 6.75
+  },
+  {
+    "question": "Durante tu etapa en Sopra Steria (2022–2025) gestionaste el gobierno de APIs en BBVA. ¿Qué implica el API Governance y qué metodologías aplicaste?",
+    "expected": "Debe hablar de revisión y validación de componentes, estandarización técnica, gestión del ciclo de vida de APIs, catálogo de componentes globales para canal móvil y entornos multipaís.",
+    "mode": "rag",
+    "answer": "De momento no dispongo de información suficiente en los documentos proporcionados para responder est",
+    "intent": "rag",
+    "tools_used": [
+      "search_documents",
+      "generate_answer"
+    ],
+    "score": 0.09,
+    "latency": 1.44
+  },
+  {
+    "question": "Durante tu etapa en Sopra Steria (2022–2025) gestionaste el gobierno de APIs en BBVA. ¿Qué implica el API Governance y qué metodologías aplicaste?",
+    "expected": "Debe hablar de revisión y validación de componentes, estandarización técnica, gestión del ciclo de vida de APIs, catálogo de componentes globales para canal móvil y entornos multipaís.",
+    "mode": "react",
+    "answer": "**API Governance** se refiere a un conjunto de prácticas, políticas y procedimientos que gestionan e",
+    "intent": "react",
+    "tools_used": [
+      "search_documents",
+      "duckduckgo_search"
+    ],
+    "score": 0.41,
+    "latency": 14.34
+  },
+  {
+    "question": "Durante tu etapa en Sopra Steria (2022–2025) gestionaste el gobierno de APIs en BBVA. ¿Qué implica el API Governance y qué metodologías aplicaste?",
+    "expected": "Debe hablar de revisión y validación de componentes, estandarización técnica, gestión del ciclo de vida de APIs, catálogo de componentes globales para canal móvil y entornos multipaís.",
+    "mode": "dynamic",
+    "answer": "No tengo acceso a información específica sobre la experiencia de personas individuales en Sopra Ster",
+    "intent": "dynamic",
+    "tools_used": [],
+    "score": 0.32,
+    "latency": 7.47
+  }
+]

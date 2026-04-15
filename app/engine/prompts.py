@@ -49,7 +49,8 @@ def get_agent_system_prompt() -> str:
             - Si la respuesta puede resolverse con los documentos internos, no uses búsqueda web.
             - Sé claro, preciso y conciso.
             - Si falta información, indícalo claramente y no inventes contenido.
-
+            - Si no encuentras información suficiente en search_documents, responde directamente con lo que 
+            sabes del contexto general sin usar web search innecesariamente.
             Comportamiento esperado:
             - Si la consulta es una pregunta factual sobre la documentación, busca primero en los documentos.
             - Si el usuario pide un resumen, usa summarize_documents.
