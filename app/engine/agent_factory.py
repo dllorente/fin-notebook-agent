@@ -1,8 +1,9 @@
-from app.core.config import get_llm
-from langgraph.prebuilt import create_react_agent
-from app.engine.tools import generate_briefing, search_documents, summarize_documents
 from langchain_community.tools import DuckDuckGoSearchRun
+from langgraph.prebuilt import create_react_agent
+
+from app.core.config import get_llm
 from app.engine.prompts import get_agent_system_prompt
+from app.engine.tools import generate_briefing, search_documents, summarize_documents
 
 web_search = DuckDuckGoSearchRun()
 AGENT_TOOLS = [

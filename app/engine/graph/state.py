@@ -11,3 +11,4 @@ class AgentState(TypedDict):
     answer: str
     session_id: str
     messages: Annotated[list[BaseMessage], add_messages]
+    engine_mode: str

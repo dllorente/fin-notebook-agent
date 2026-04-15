@@ -135,7 +135,7 @@ poetry run pytest
 ## 🔍 Linting & Formatting
 
 ```bash
-poetry run ruff check --fix
+poetry run ruff check . --fix
 poetry run black --check .
 ```
 
