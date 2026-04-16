@@ -5,8 +5,22 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2026-04-15
+## [Unreleased] - 2026-04-16
+## [0.13.0] - 2026-04-16
+### Fixed
+- `build_graph() ` improved 
+-  Helper `_invoke_graph`
+-  try/except + HTTPException 
 ### Added
+-  **AgentState schema** validado en playground
+- `pyproject.toml`: `langserve>=0.3.0`, `fastapi>=0.115.0`
+- `app/server.py`: FastAPI + LangServe.add_routes()
+- **Tests 100% OK** post-refactor
+- **LangServe API** completa con playground UI (`/agent/playground`) [web:449]
+- **LangSmith traces** en todos los nodos (llm, tools, edges) [cite:2]
+- **API pública** documentada en Swagger (`/docs`) 
+- **Endpoints LangServe**:
+
 ## [0.12.0] - 2026-04-15
 ### Added
 ## [0.11.0] - 2026-04-15

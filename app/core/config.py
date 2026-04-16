@@ -1,6 +1,6 @@
 # Importamos las librerías necesarias
 from functools import lru_cache
-
+import importlib
 from langchain_core.embeddings import Embeddings
 from langchain_core.language_models import BaseChatModel
 from pydantic import AliasChoices, Field
@@ -18,7 +18,11 @@ class Settings(BaseSettings):
     # Agnóstico de proveedor
     llm_provider: str = Field(default="openai", validation_alias=AliasChoices("LLM_PROVIDER"))
     llm_model: str = Field(default="gpt-4o-mini", validation_alias=AliasChoices("LLM_MODEL", "MODEL_NAME"))
-    llm_api_key: str = Field(..., validation_alias=AliasChoices("LLM_API_KEY", "OPENAI_API_KEY"))
+    #llm_api_key: str = Field(..., validation_alias=AliasChoices("LLM_API_KEY", "OPENAI_API_KEY"))
+    openai_api_key: str = Field(default="", validation_alias=AliasChoices("OPENAI_API_KEY"))
+    anthropic_api_key: str = Field(default="", validation_alias=AliasChoices("ANTHROPIC_API_KEY"))
+    groq_api_key: str = Field(default="", validation_alias=AliasChoices("GROQ_API_KEY"))
+
     embedding_model: str = Field(
         default="text-embedding-3-small",
         validation_alias=AliasChoices("EMBEDDING_MODEL"),
@@ -26,60 +30,65 @@ class Settings(BaseSettings):
     embedding_provider: str = Field(default="openai", validation_alias=AliasChoices("EMBEDDING_PROVIDER"))
     data_dir: str = Field(default="data", validation_alias=AliasChoices("DATA_DIR"))
     vectorstore_dir: str = Field(default=".vectorstore", validation_alias=AliasChoices("VECTORSTORE_DIR"))
-    chunk_size: int = Field(default="openai", validation_alias=AliasChoices("CHUNK_SIZE"))
-    chunk_overlap: int = Field(default="openai", validation_alias=AliasChoices("CHUNK_OVERLAP"))
-    langchain_tracing_v2: str = Field(default="false", validation_alias=AliasChoices("LANGCHAIN_TRACING_V2"))
+    chunk_size: int = Field(validation_alias=AliasChoices("CHUNK_SIZE"))
+    chunk_overlap: int = Field(validation_alias=AliasChoices("CHUNK_OVERLAP"))
+    langchain_tracing_v2: bool = Field(default = False, validation_alias=AliasChoices("LANGCHAIN_TRACING_V2"))
     langchain_endpoint: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_ENDPOINT"))
     langchain_api_key: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_API_KEY"))
     langchain_project: str = Field(default="fin-notebook-agent", validation_alias=AliasChoices("LANGCHAIN_PROJECT"))
 
+# Mapa de proveedor → (módulo, clase, campo de api_key)
+LLM_REGISTRY = {
+    "openai": ("langchain_openai", "ChatOpenAI", "openai_api_key"),
+    "anthropic": ("langchain_anthropic", "ChatAnthropic", "anthropic_api_key"),
+    "groq": ("langchain_groq", "ChatGroq", "groq_api_key"),
+    "mistral": ("langchain_mistralai", "ChatMistralAI", "mistral_api_key"),
+}
+EMBEDDINGS_REGISTRY = {
+    "openai": ("langchain_openai", "OpenAIEmbeddings", "openai_api_key"),
+    "huggingface": ("langchain_huggingface", "HuggingFaceEmbeddings", None),
+    "cohere": ("langchain_cohere", "CohereEmbeddings", "cohere_api_key"),
+}
 
 @lru_cache(maxsize=1)  # Cacheamos la función para que no se vuelva a ejecutar cada vez que se llama
 def get_settings() -> Settings:
     return Settings()  # Devuelve una instancia de Settings
 
-
+@lru_cache(maxsize=1)
 def get_llm() -> BaseChatModel:
-    # Lee get_settings().llm_provider
-    # Si es "openai" → devuelve ChatOpenAI(...)
-    # # Si es "anthropic" → devuelve ChatAnthropic(...)
-    # Si no reconoce el proveedor → lanza ValueError con mensaje claro
     settings = get_settings()
     provider = settings.llm_provider.lower()
-    if provider == "openai":
-        from langchain_openai import ChatOpenAI
-
-        return ChatOpenAI(model=settings.llm_model, api_key=settings.llm_api_key)
-
-    elif provider == "anthropic":
-        from langchain_anthropic import ChatAnthropic
-
-        return ChatAnthropic(model=settings.llm_model, api_key=settings.llm_api_key)
-    else:
-        raise ValueError(f"Proveedor LLM no soportado: '{provider}'. " f"Valores válidos: 'openai', 'anthropic'")
-
-
-def get_embeddings() -> Embeddings:
-    # Lee get_settings().embedding_provider
-    # Si es "openai" → devuelve OpenAIEmbeddings(...)
-    # Si es "huggingface" → devuelve HuggingFaceEmbeddings(...)
-    # Si no reconoce → lanza ValueError
-    settings = get_settings()
-    embedding_provider = settings.embedding_provider
-
-    if embedding_provider == "openai":
-        # Devuelve OpenAIEmbeddings con model y api_key
-        from langchain_openai import OpenAIEmbeddings
-
-        return OpenAIEmbeddings(model=settings.embedding_model, api_key=settings.llm_api_key)
-    elif embedding_provider == "huggingface":
-        # Devuelve HuggingFaceEmbeddings con model_name
-        # Ojo: HuggingFace no necesita api_key para modelos locales
-        from langchain_huggingface import HuggingFaceEmbeddings
-
-        return HuggingFaceEmbeddings(model_name=settings.embedding_model)
-    else:
+    if provider not in LLM_REGISTRY:
         raise ValueError(
-            f"Proveedor de embeddings no soportado: '{embedding_provider}'. "
-            f"Valores válidos: 'openai', 'huggingface'"
+            f"Proveedor LLM no soportado: '{provider}'. "
+            f"Valores válidos: {list(LLM_REGISTRY.keys())}"
         )
+    module_name, class_name, api_key_field = LLM_REGISTRY[provider]
+    module = importlib.import_module(module_name)
+    cls = getattr(module, class_name)
+    api_key = getattr(settings, api_key_field, "")
+    print(f"\n💾 Modelo seleccionado en {module_name}")
+
+    return cls(model=settings.llm_model, api_key=api_key)
+
+@lru_cache(maxsize=1)
+def get_embeddings() -> Embeddings:
+    settings = get_settings()
+    provider = settings.embedding_provider
+
+    if provider not in EMBEDDINGS_REGISTRY:
+        raise ValueError(
+            f"Proveedor de embeddings no soportado: '{provider}'. "
+            f"Valores válidos: {list(EMBEDDINGS_REGISTRY.keys())}"
+        )
+
+    module_name, class_name, api_key_field = EMBEDDINGS_REGISTRY[provider]
+    module = importlib.import_module(module_name)
+    cls = getattr(module, class_name)
+
+    kwargs = {"model": settings.embedding_model} if provider != "huggingface" else {"model_name": settings.embedding_model}
+    if api_key_field:
+        kwargs["api_key"] = getattr(settings, api_key_field, "")
+    print(f"\n💾 Embedding seleccionado en {module_name}")
+
+    return cls(**kwargs)

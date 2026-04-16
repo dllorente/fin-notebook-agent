@@ -1,18 +1,52 @@
 [
-    {
-      "question": "Tienes más de 20 años en banca, ¿cómo describes tu transición hacia la IA generativa y qué te motivó a dar ese salto?",
-      "expected": "Debe mencionar su trayectoria en análisis funcional y sistemas bancarios críticos, y explicar la decisión estratégica hacia LLMs, RAG y agentes. Se valora que cite el proyecto GenAI en BBVA como punto de inflexión."
-    },
-    {
-      "question": "¿Qué rol desempeñaste como Tech Lead en el proyecto de IA Generativa en BBVA y cuáles fueron tus principales responsabilidades?",
-      "expected": "Debe describir la implementación inicial de soluciones basadas en LLMs, su rol de liderazgo técnico, y mencionar la decisión posterior de profundizar en arquitecturas agénticas para proyectos de mayor escala."
-    },
-    {
-      "question": "Explica qué es RAG (Retrieval-Augmented Generation) y cómo lo has aplicado en proyectos reales.",
-      "expected": "Debe definir RAG como técnica que combina recuperación de documentos con generación de texto mediante LLMs, y relacionarlo con su experiencia en el proyecto GenAI bancario de BBVA."
-    },
-    {
-      "question": "Durante tu etapa en Sopra Steria (2022–2025) gestionaste el gobierno de APIs en BBVA. ¿Qué implica el API Governance y qué metodologías aplicaste?",
-      "expected": "Debe hablar de revisión y validación de componentes, estandarización técnica, gestión del ciclo de vida de APIs, catálogo de componentes globales para canal móvil y entornos multipaís."
-    }
-  ]
+  {
+    "question": "¿Qué es una hipoteca variable?",
+    "expected": "Debe explicar de forma clara qué es una hipoteca variable, indicando que el tipo de interés puede cambiar en el tiempo según un índice de referencia como el Euribor.",
+    "expected_intent": "qa"
+  },
+  {
+    "question": "Resume el documento sobre tarjetas de crédito y débito.",
+    "expected": "Debe ofrecer un resumen breve y estructurado con las diferencias principales entre tarjetas de crédito y débito, usos habituales, costes o comisiones si aparecen en el documento, y puntos clave para el cliente.",
+    "expected_intent": "summarize"
+  },
+  {
+    "question": "Genera un briefing ejecutivo sobre los riesgos principales en la concesión de préstamos hipotecarios.",
+    "expected": "Debe devolver un briefing ejecutivo con puntos clave, riesgos principales, implicaciones para la entidad y posibles acciones o recomendaciones.",
+    "expected_intent": "briefing"
+  },
+  {
+    "question": "¿Qué diferencias hay entre una cuenta corriente y una cuenta de ahorro?",
+    "expected": "Debe explicar las diferencias principales entre cuenta corriente y cuenta de ahorro, incluyendo operativa habitual, disponibilidad del dinero y posible remuneración o finalidad de cada una.",
+    "expected_intent": "qa"
+  },
+  {
+    "question": "¿Qué significa el TIN en un préstamo?",
+    "expected": "Debe definir el TIN como tipo de interés nominal y explicar que representa el coste nominal del préstamo sin incluir necesariamente otros gastos o comisiones.",
+    "expected_intent": "qa"
+  },
+  {
+    "question": "¿Qué es el Euribor y cómo afecta a una hipoteca variable?",
+    "expected": "Debe explicar qué es el Euribor como índice de referencia y cómo influye en la revisión del tipo de interés de una hipoteca variable.",
+    "expected_intent": "qa"
+  },
+  {
+    "question": "Resume las comisiones y gastos asociados a una cuenta bancaria.",
+    "expected": "Debe ofrecer un resumen claro de las principales comisiones y gastos asociados a una cuenta bancaria, como mantenimiento, administración, transferencias o descubiertos, si aparecen en el documento.",
+    "expected_intent": "summarize"
+  },
+  {
+    "question": "Haz un resumen estructurado del documento sobre préstamos al consumo.",
+    "expected": "Debe resumir de forma estructurada los puntos principales del documento sobre préstamos al consumo, incluyendo condiciones generales, costes, riesgos y aspectos relevantes para el cliente.",
+    "expected_intent": "summarize"
+  },
+  {
+    "question": "Resume el contenido sobre amortización anticipada de hipotecas.",
+    "expected": "Debe sintetizar qué es la amortización anticipada, sus posibles ventajas, limitaciones y comisiones o condiciones aplicables según el documento.",
+    "expected_intent": "summarize"
+  },
+  {
+    "question": "Genera un briefing ejecutivo sobre las comisiones bancarias más relevantes para clientes particulares.",
+    "expected": "Debe devolver un briefing ejecutivo con categorías de comisiones relevantes, impacto para clientes particulares, riesgos reputacionales o comerciales y posibles acciones o recomendaciones.",
+    "expected_intent": "briefing"
+  }
+]

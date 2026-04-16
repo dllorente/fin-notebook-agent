@@ -21,7 +21,7 @@ with st.sidebar:
     agent_mode = st.radio(
         "Modo del agente:",
         ["Grafo estático", "Agente ReAct", "Dynamic agent"],
-        index=1,
+        index=0,
     )
 
 MODE_MAP = {

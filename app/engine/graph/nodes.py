@@ -12,7 +12,7 @@ def qa_node(state: AgentState) -> AgentState:
     return {
         **state,
         "answer": result["answer"],
-        "intent": result.get("intent", engine_mode),
+        "intent": result.get("intent", state.get("intent", "qa")),
         "tools_used": result.get("tools_used", []),
     }
 
@@ -27,7 +27,7 @@ def summarize_node(state: AgentState) -> AgentState:
     return {
         **state,
         "answer": result["answer"],
-        "intent": result.get("intent", engine_mode),
+        "intent": result.get("intent", state.get("intent", "summarize")),
         "tools_used": result.get("tools_used", []),
     }
 
@@ -42,6 +42,6 @@ def briefing_node(state: AgentState) -> AgentState:
     return {
         **state,
         "answer": result["answer"],
-        "intent": result.get("intent", engine_mode),
+        "intent": result.get("intent", state.get("intent", "briefing")),
         "tools_used": result.get("tools_used", []),
     }
