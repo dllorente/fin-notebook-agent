@@ -9,6 +9,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Definimos la clase Settings que hereda de BaseSettings
 class Settings(BaseSettings):
+    DATABASE_URL: str = Field(default="sqlite:///./chat_sessions.db")
+
     # Configuración del modelo: Lee el archivo .env y codifica el archivo en utf-8
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -36,7 +38,7 @@ class Settings(BaseSettings):
     langchain_endpoint: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_ENDPOINT"))
     langchain_api_key: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_API_KEY"))
     langchain_project: str = Field(default="fin-notebook-agent", validation_alias=AliasChoices("LANGCHAIN_PROJECT"))
-
+    
 # Mapa de proveedor → (módulo, clase, campo de api_key)
 LLM_REGISTRY = {
     "openai": ("langchain_openai", "ChatOpenAI", "openai_api_key"),

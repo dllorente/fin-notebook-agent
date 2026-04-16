@@ -6,6 +6,25 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - 2026-04-16
+### Added
+- Persistent chat sessions with SQLite using `ChatSession` and `ChatMessage`.
+- Versioned chat API endpoints:
+  - `POST /api/v1/chat/ask`
+  - `GET /api/v1/chat/sessions`
+  - `GET /api/v1/chat/sessions/{session_id}/messages`
+- Message history retrieval by `session_id`.
+- Multi-turn chat persistence with user and assistant messages stored in database.
+- FastAPI response schemas for chat request/response and read models.
+
+### Changed
+- Chat flow now rebuilds prior conversation history from SQLite before invoking LangGraph.
+- Sessions are listed ordered by latest activity using `updated_at`.
+- API responses were cleaned for frontend consumption using `response_model`.
+
+### Fixed
+- Database tables are created on startup through FastAPI lifespan.
+- SQLModel models are imported before `create_all()` so tables are registered correctly.
+- Corrected chat routing under `/api/v1/chat/...`.
 ## [0.13.0] - 2026-04-16
 ### Fixed
 - `build_graph() ` improved 

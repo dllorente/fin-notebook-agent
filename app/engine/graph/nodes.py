@@ -1,13 +1,28 @@
 from app.engine.graph.state import AgentState
 from app.engine.runner import run_engine
+from app.engine.dynamic_agent import run_dynamic_agent
+
+
+def _run_by_mode(question: str, state: AgentState) -> dict:
+    engine_mode = state.get("engine_mode", "rag")
+
+    if engine_mode == "dynamic":
+        return run_dynamic_agent(
+            question=question,
+            chat_history=state.get("messages", []),
+        )
+
+    return run_engine(
+        question=question,
+        chat_history=state.get("messages", []),
+        mode=engine_mode,
+    )
 
 
 def qa_node(state: AgentState) -> AgentState:
-    engine_mode = state.get("engine_mode", "rag")
-    result = run_engine(
+    result = _run_by_mode(
         question=state["question"],
-        chat_history=state.get("messages", []),
-        mode=engine_mode,
+        state=state,
     )
     return {
         **state,
@@ -18,11 +33,9 @@ def qa_node(state: AgentState) -> AgentState:
 
 
 def summarize_node(state: AgentState) -> AgentState:
-    engine_mode = state.get("engine_mode", "rag")
-    result = run_engine(
+    result = _run_by_mode(
         question=f"Por favor, genera un resumen estructurado del siguiente contenido: {state['question']}",
-        chat_history=state.get("messages", []),
-        mode=engine_mode,
+        state=state,
     )
     return {
         **state,
@@ -33,11 +46,9 @@ def summarize_node(state: AgentState) -> AgentState:
 
 
 def briefing_node(state: AgentState) -> AgentState:
-    engine_mode = state.get("engine_mode", "rag")
-    result = run_engine(
+    result = _run_by_mode(
         question=f"Genera un briefing ejecutivo con puntos clave, riesgos y acciones sobre: {state['question']}",
-        chat_history=state.get("messages", []),
-        mode=engine_mode,
+        state=state,
     )
     return {
         **state,
