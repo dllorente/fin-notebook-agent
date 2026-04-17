@@ -3,12 +3,6 @@ from app.engine.dynamic_agent import run_dynamic_agent
 from app.engine.react_agent import run_react_agent
 
 
-def run_engine(question: str, chat_history=None, mode: str = "rag") -> dict:
-    from app.engine.agent import build_rag_chain
-from app.engine.react_agent import run_react_agent
-from app.engine.dynamic_agent import run_dynamic_agent
-
-
 def run_engine(
     question: str,
     chat_history=None,

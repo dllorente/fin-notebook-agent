@@ -1,6 +1,6 @@
+from app.engine.dynamic_agent import run_dynamic_agent
 from app.engine.graph.state import AgentState
 from app.engine.runner import run_engine
-from app.engine.dynamic_agent import run_dynamic_agent
 
 
 def _run_by_mode(question: str, state: AgentState) -> dict:

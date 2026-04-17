@@ -1,7 +1,6 @@
-from sqlmodel import SQLModel, create_engine, Session
-from sqlalchemy import event
-from app.core.config import get_settings
+from sqlmodel import Session, SQLModel, create_engine
 
+from app.core.config import get_settings
 
 settings = get_settings() 
 engine = create_engine(

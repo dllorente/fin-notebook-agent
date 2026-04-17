@@ -1,6 +1,6 @@
 # 🏦 Fin-Notebook-Agent
 
-> Agentic RAG assistant for banking documentation, inspired by NotebookLM
+> Agentic RAG assistant for banking documentation, inspired by NotebookLM.
 
 ![CI](https://github.com/dllorente/fin-notebook-agent/actions/workflows/ci.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.12-blue)
@@ -8,145 +8,50 @@
 ![LangGraph](https://img.shields.io/badge/LangGraph-agentic-orange)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-## ¿Qué es esto?
-Agentic Knowledge Platform para Documentación Bancaria
-Inspirado en NotebookLM, evolucionado con RAG multi-fuente, agente dinámico, evaluación reproducible y arquitectura de producto.
+Fin-Notebook-Agent is a portfolio project focused on building an internal-style assistant for financial documentation with an agentic RAG architecture.
 
-Definición del proyecto
-Una plataforma GenAI capaz de consultar, resumir, hacer briefings y combinar múltiples fuentes de conocimiento bancario 
-—documentos, FAQs, S3 y web fallback— mediante un agente dinámico con herramientas especializadas, 
-trazabilidad, evaluación y una experiencia de producto usable.
+It combines:
+- LangGraph orchestration and specialized tools (search, summarize, briefing, web fallback),
+- retrieval over local indexed documents with Chroma,
+- a FastAPI backend and Streamlit UI,
+- observability and reproducible evaluation workflows.
 
-Asistente conversacional agnostico especializado en documentación bancaria.
-Permite consultar, resumir y analizar documentos financieros mediante un
-agente ReAct con herramientas especializadas y un grafo de intención con LangGraph.
-
-Inspirado en NotebookLM pero orientado al sector financiero y construido
-con un stack de producción: FastAPI + LangGraph + Chroma + Streamlit.
-
-## 🛠️ Stack
-
-| Capa | Tecnología |
-|------|-----------|
-| LLM | OpenAI GPT-4o / Anthropic Claude |
-| Orquestación | LangGraph + ReAct Agent |
-| RAG | LangChain + Chroma |
-| API | FastAPI |
-| Frontend | Streamlit |
-| Observabilidad | LangSmith |
-| CI/CD | GitHub Actions |
-| Contenedor | Docker |
-
-## 🏗️ Arquitectura
-Usuario
-│
-▼
-Streamlit UI / FastAPI
-│
-▼
-ReAct Agent (LangGraph)
-├── search_documents → Chroma Vector Store
-├── summarize_documents
-├── generate_briefing
-└── DuckDuckGo Search → Internet
-│
-▼
-LLM (OpenAI / Anthropic)
-│
-▼
-Respuesta con fuente citada
-
-## 🚀 Instalación
+## Quick demo setup
 
 ```bash
 git clone https://github.com/dllorente/fin-notebook-agent.git
 cd fin-notebook-agent
 poetry install
-cp .env.example .env  # añade tus API keys
-```
-
-## ▶️ Uso
-
-**Indexar documentos:**
-```bash
+cp .env.example .env
 poetry run python scripts/ingest.py
-```
-
-**Arrancar API:**
-```bash
 poetry run uvicorn main:app --reload
 ```
 
-**Arrancar Streamlit:**
+In another terminal:
+
 ```bash
 poetry run streamlit run streamlit_app/main.py
 ```
 
-**Ejecutar evaluación de agentes:**
-```bash
-poetry run python scripts/evaluate.py
-```
+## Tech stack
 
+- Python 3.12
+- LangChain + LangGraph
+- Chroma vector store
+- FastAPI + Streamlit
+- Poetry + Docker + GitHub Actions
 
+## Project notes
 
-## 📁 Estructura
+- `models/vectorstores/` is generated locally by ingestion and is not intended for version control.
+- `chat_sessions.db` is local runtime state.
 
-```bash
-fin-notebook-agent/
-├── app/
-│   ├── api/              # FastAPI routes
-│   ├── core/             # Config, LLM, embeddings
-│   ├── engine/           # RAG chain, prompts, tools, ReAct agent
-│   │   └── graph/        # LangGraph state, router, nodes, graph
-│   ├── index/            # Vector store, document loader
-│   └── models/           # Pydantic schemas
-├── streamlit_app/        # Streamlit UI
-├── scripts/              # ingest.py, evaluate.py
-├── tests/                # Pytest tests
-├── data/                 # Documentos bancarios indexados
-├── Dockerfile
-└── .github/
-    └── workflows/
-        └── ci.yml
-```
+## Full documentation
 
-## 🔑 Variables de entorno
+For detailed setup, environment variables, architecture, repository map, troubleshooting, evaluation, roadmap, and lessons learned, see:
 
-Copia `.env.example` a `.env` y rellena:
+- [`docs/README_FULL.md`](docs/README_FULL.md)
 
-```env
-LLM_PROVIDER=openai          # openai | anthropic
-OPENAI_API_KEY=...
-ANTHROPIC_API_KEY=...
-LANGCHAIN_API_KEY=...        # LangSmith tracing
-LANGCHAIN_TRACING_V2=true
-LANGCHAIN_PROJECT=fin-notebook-agent
-```
+## License
 
-## VectorStore
-
-Borra el vectorstore
-```bash
-rm -rf .vectorstore
-```
-Reindexado de documentos
-```bash
-poetry run python scripts/ingest.py
-```
-
-## 🧪 Tests unitarios
-
-```bash
-poetry run pytest
-```
-
-## 🔍 Linting & Formatting
-
-```bash
-poetry run ruff check . --fix
-poetry run black --check .
-```
-
-## 📄 Licencia
-
-MIT — David Llorente Raposo
+MIT - David Llorente Raposo

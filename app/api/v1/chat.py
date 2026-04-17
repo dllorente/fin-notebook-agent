@@ -1,15 +1,14 @@
 from datetime import UTC, datetime
 from typing import Any
+
 from fastapi import APIRouter, Depends, HTTPException
+from langchain_core.messages import AIMessage, HumanMessage
 from sqlmodel import Session, select
+
 from app.db.database import get_session
-from app.db.models import ChatSession, ChatMessage
+from app.db.models import ChatMessage, ChatSession
 from app.engine.graph.graph import build_graph
-from app.models.schemas import ChatAskRequest
-from langchain_core.messages import HumanMessage, AIMessage
 from app.models.schemas import ChatAskRequest, ChatAskResponse, ChatMessageRead, ChatSessionRead
-from typing import Annotated
-from fastapi import Body
 
 router = APIRouter(prefix="/v1/chat", tags=["chat"])
 

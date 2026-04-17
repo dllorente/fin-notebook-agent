@@ -1,15 +1,15 @@
 from contextlib import asynccontextmanager
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from langserve import add_routes
+from sqlmodel import SQLModel
 
 from app.api.routes import router
 from app.api.v1.chat import router as chat_v1_router
 from app.db.database import engine  # ← IMPORTA engine
-from app.db.models import ChatSession, ChatMessage  # ← IMPORTA MODELOS (asegura metadata)
-from langserve import add_routes
 from app.engine.graph.graph import build_graph
-from sqlmodel import SQLModel
 
 # carga .env
 load_dotenv()

@@ -15,16 +15,23 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - Message history retrieval by `session_id`.
 - Multi-turn chat persistence with user and assistant messages stored in database.
 - FastAPI response schemas for chat request/response and read models.
+- `docs/README_FULL.md` with full technical documentation after README split.
 
 ### Changed
 - Chat flow now rebuilds prior conversation history from SQLite before invoking LangGraph.
 - Sessions are listed ordered by latest activity using `updated_at`.
 - API responses were cleaned for frontend consumption using `response_model`.
+- `README.md` was reduced to a portfolio-focused summary with quick start and link to full docs.
+- `.gitignore` was simplified and normalized for this project stack.
 
 ### Fixed
 - Database tables are created on startup through FastAPI lifespan.
 - SQLModel models are imported before `create_all()` so tables are registered correctly.
 - Corrected chat routing under `/api/v1/chat/...`.
+
+### Removed
+- Tracked local artifacts from version control (`chat_sessions.db`, `models/vectorstores/*`).
+- One-off local debug scripts (`debug_banking.py`, `debug_question4.py`, `debug_react_only.py`).
 ## [0.13.0] - 2026-04-16
 ### Fixed
 - `build_graph() ` improved 

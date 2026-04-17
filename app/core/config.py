@@ -1,6 +1,7 @@
 # Importamos las librerías necesarias
-from functools import lru_cache
 import importlib
+from functools import lru_cache
+
 from langchain_core.embeddings import Embeddings
 from langchain_core.language_models import BaseChatModel
 from pydantic import AliasChoices, Field
@@ -32,8 +33,8 @@ class Settings(BaseSettings):
     embedding_provider: str = Field(default="openai", validation_alias=AliasChoices("EMBEDDING_PROVIDER"))
     data_dir: str = Field(default="data", validation_alias=AliasChoices("DATA_DIR"))
     vectorstore_dir: str = Field(default=".vectorstore", validation_alias=AliasChoices("VECTORSTORE_DIR"))
-    chunk_size: int = Field(validation_alias=AliasChoices("CHUNK_SIZE"))
-    chunk_overlap: int = Field(validation_alias=AliasChoices("CHUNK_OVERLAP"))
+    chunk_size: int = Field(default=1000,validation_alias=AliasChoices("CHUNK_SIZE"))
+    chunk_overlap: int = Field(default=200,validation_alias=AliasChoices("CHUNK_OVERLAP"))
     langchain_tracing_v2: bool = Field(default = False, validation_alias=AliasChoices("LANGCHAIN_TRACING_V2"))
     langchain_endpoint: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_ENDPOINT"))
     langchain_api_key: str = Field(default="", validation_alias=AliasChoices("LANGCHAIN_API_KEY"))
@@ -88,7 +89,9 @@ def get_embeddings() -> Embeddings:
     module = importlib.import_module(module_name)
     cls = getattr(module, class_name)
 
-    kwargs = {"model": settings.embedding_model} if provider != "huggingface" else {"model_name": settings.embedding_model}
+    kwargs = {"model_name": settings.embedding_model}
+    if provider != "huggingface":
+        kwargs = {"model": settings.embedding_model}
     if api_key_field:
         kwargs["api_key"] = getattr(settings, api_key_field, "")
     print(f"\n💾 Embedding seleccionado en {module_name}")
